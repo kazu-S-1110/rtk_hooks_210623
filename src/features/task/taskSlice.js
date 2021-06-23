@@ -26,7 +26,7 @@ export const taskSlice = createSlice({
     },
     //タスクのチェックの反転
     completeTask: (state, action) => {
-      const task = state.task.find((t) => t.id === action.payload.id);
+      const task = state.tasks.find((t) => t.id === action.payload.id);
       if (task) {
         task.completed = !task.completed;
       }
