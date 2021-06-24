@@ -1,11 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiUrl = 'https://jsonplaceholder.typicode.com/users';
-
-// const initialState = {
-//   users: [],
-// };
+const apiUrl = 'https://jsonplaceholder.typicode.com/photos';
 
 export const fetchAsyncGet = createAsyncThunk('fetch/get', async () => {
   const res = await axios.get(apiUrl);
@@ -14,18 +10,18 @@ export const fetchAsyncGet = createAsyncThunk('fetch/get', async () => {
 
 const fetchSlice = createSlice({
   name: 'fetch',
-  initialState: { users: [] },
+  initialState: { photos: [] },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAsyncGet.fulfilled, (state, action) => {
       return {
         ...state,
-        users: action.payload,
+        photos: action.payload,
       };
     });
   },
 });
 
-export const selectUser = (state) => state.fetch.users;
+export const selectPhotos = (state) => state.fetch.photos;
 
 export default fetchSlice.reducer;
